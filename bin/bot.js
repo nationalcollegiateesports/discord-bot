@@ -1,4 +1,4 @@
-const { AkairoClient, CommandHandler } = require('discord-akairo');
+const { AkairoClient, CommandHandler, ListenerHandler } = require('discord-akairo');
 const path = require('path');
 
 require('dotenv').config();
@@ -16,7 +16,12 @@ class NCEBot extends AkairoClient {
             prefix: 'nce',
             // Options for the command handler goes here.
         });
+        this.listenerHandler = new ListenerHandler(this, {
+            directory: path.join(__dirname, '../src/bot/listeners/' )
+        })
         this.commandHandler.loadAll();
+        this.commandHandler.useListenerHandler(this.listenerHandler);
+        this.listenerHandler.loadAll();
     }
 }
 

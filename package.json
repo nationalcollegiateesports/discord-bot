@@ -21,8 +21,6 @@
   "dependencies": {
     "discord-akairo": "^8.1.0",
     "discord.js": "^12.5.1",
-    "dotenv": "^8.2.0",
-    "erlpack": "github:discord/erlpack",
-    "zlib-sync": "^0.1.7"
+    "dotenv": "^8.2.0"
   }
 }
