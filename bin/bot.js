@@ -1,6 +1,5 @@
 const { AkairoClient, CommandHandler, ListenerHandler } = require('discord-akairo');
 const path = require('path');
-
 require('dotenv').config();
 
 class NCEBot extends AkairoClient {
@@ -25,5 +24,13 @@ class NCEBot extends AkairoClient {
     }
 }
 
+
+
+
 const client = new NCEBot();
+
+
+
+
+
 client.login(process.env.BOT_TOKEN);
