@@ -1,5 +1,6 @@
 const { AkairoClient, CommandHandler } = require('discord-akairo');
 const path = require('path');
+const ConfigHandler = require('../src/common/config/handler');
 
 require('dotenv').config();
 
@@ -17,6 +18,7 @@ class NCEBot extends AkairoClient {
             // Options for the command handler goes here.
         });
         this.commandHandler.loadAll();
+        this.config = new ConfigHandler(process.env.DB);
     }
 }
 
