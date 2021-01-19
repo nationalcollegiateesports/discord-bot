@@ -24,5 +24,8 @@
     "dotenv": "^8.2.0",
     "erlpack": "github:discord/erlpack",
     "zlib-sync": "^0.1.7"
+  },
+  "devDependencies": {
+    "prettier": "2.2.1"
   }
 }
