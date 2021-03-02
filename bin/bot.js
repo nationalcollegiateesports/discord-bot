@@ -1,25 +1,32 @@
-const { AkairoClient, CommandHandler } = require('discord-akairo');
-const path = require('path');
-const mongoose = require('mongoose');
+const { AkairoClient, CommandHandler } = require("discord-akairo");
+const path = require("path");
+const mongoose = require("mongoose");
 
-require('dotenv').config();
+require("dotenv").config();
 
 class NCEBot extends AkairoClient {
-    constructor() {
-        super({
-            // Options for Akairo go here.
-        }, {
-            // Options for discord.js goes here.
-        });
+  constructor() {
+    super(
+      {
+        // Options for Akairo go here.
+      },
+      {
+        // Options for discord.js goes here.
+      }
+    );
 
-        this.commandHandler = new CommandHandler(this, {
-            directory: path.join(__dirname, '../src/bot/commands/'),
-            prefix: 'nce',
-            // Options for the command handler goes here.
-        });
-        this.commandHandler.loadAll();
-        this.db = mongoose.connect(process.env.DB, {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false});
-    }
+    this.commandHandler = new CommandHandler(this, {
+      directory: path.join(__dirname, "../src/bot/commands/"),
+      prefix: "nce",
+      // Options for the command handler goes here.
+    });
+    this.commandHandler.loadAll();
+    this.db = mongoose.connect(process.env.DB, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useFindAndModify: false,
+    });
+  }
 }
 
 const client = new NCEBot();
