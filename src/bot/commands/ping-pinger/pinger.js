@@ -1,5 +1,5 @@
 const { Command } = require('discord-akairo');
-const Pinger = require('../../common/config/pinger');
+const Pinger = require('./model');
 
 class PingerCommand extends Command {
     constructor() {
@@ -9,13 +9,14 @@ class PingerCommand extends Command {
     }
 
     async exec(message) {
-        const result = await this.client.config.get(Pinger, message.guild.id);
+        const { guild } = message;
+        const pinger = await Pinger.find({ guildId: guild.id }).exec();
 
-        if (typeof result === 'undefined') {
+        if (pinger.length === 0) {
             return message.reply('No last pinger!')
         } else {
-            const { id, url } = result;
-            return message.reply(`Last pinger: ${message.guild.member(id)} @ ${url}`);
+            const { id, url } = pinger[0];
+            return message.reply(`Last pinger: ${guild.member(id)} @ ${url}`);
         }
     }
 }

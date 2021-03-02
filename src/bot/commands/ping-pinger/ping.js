@@ -1,5 +1,5 @@
 const { Command } = require('discord-akairo');
-const Pinger = require('../../common/config/pinger');
+const Pinger = require('./model');
 
 class PingCommand extends Command {
     constructor() {
@@ -11,7 +11,13 @@ class PingCommand extends Command {
     async exec(message) {
         const { url } = message;
         const { id } = message.member;
-        await this.client.config.set(Pinger, { id, url, guildId: message.guild.id });
+        const guildId = message.guild.id;
+        const document = { id, url, guildId };
+
+        if (await Pinger.findOneAndUpdate({ guildId }, document).exec() === null) {
+            await Pinger.create(document);
+        }
+
         return message.reply('Pong!');
     }
 }
