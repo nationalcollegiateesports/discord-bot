@@ -1,5 +1,5 @@
 const { Command } = require("discord-akairo");
-const Pinger = require("./model");
+const Pinger = require("../models/pinger");
 
 class PingCommand extends Command {
   constructor() {
