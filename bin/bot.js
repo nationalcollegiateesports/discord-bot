@@ -1,5 +1,6 @@
 const { AkairoClient, CommandHandler } = require("discord-akairo");
 const path = require("path");
+const mongoose = require("mongoose");
 
 require("dotenv").config();
 
@@ -20,6 +21,11 @@ class NCEBot extends AkairoClient {
       // Options for the command handler goes here.
     });
     this.commandHandler.loadAll();
+    this.db = mongoose.connect(process.env.DB, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useFindAndModify: false,
+    });
   }
 }
 
