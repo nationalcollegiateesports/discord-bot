@@ -14,9 +14,7 @@ class PingCommand extends Command {
     const guildId = message.guild.id;
     const document = { id, url, guildId };
 
-    if (
-      (await Pinger.findOneAndUpdate({ guildId }, document).exec()) === null
-    ) {
+    if ((await Pinger.findOneAndUpdate({ guildId }, document).exec()) === null) {
       await Pinger.create(document);
     }
 
